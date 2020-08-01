@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!--  配置Handler -->
+	<!-- <bean name="/queryUser.action" class="com.myt.controller.UserController"></bean> -->
+	<!-- 处理器适配器 
+		所有处理器适配器都实现HandlerAdapter接口
+	-->
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+	<!-- 处理器映射器 
+		将bean的name作为URL进行查找，需要在配置Handler时指定beanname(就是URL)
+	-->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		
+	</bean>
+	<!-- 配置视图解析器
+		解析jsp，默认使用jstl标签，classpath下有jstl的包
+	-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INFO/jsp"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<context:component-scan base-package="com.myt"></context:component-scan>
+</beans>
